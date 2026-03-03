@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Birthday Bacha 🎂</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Lato:wght@300;400&display=swap');
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #1a0a2e 0%, #2d1b4e 40%, #1a0a2e 100%);
+      font-family: 'Lato', sans-serif;
+      overflow-x: hidden;
+      color: white;
+    }
+
+    /* Stars */
+    .stars {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--dur) ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity: 0.1; transform: scale(1); }
+      to   { opacity: 1;   transform: scale(1.4); }
+    }
+
+    /* Floating hearts */
+    .hearts-bg {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .heart-float {
+      position: absolute;
+      bottom: -50px;
+      font-size: var(--size);
+      animation: floatUp var(--dur2) ease-in infinite;
+      opacity: 0;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(0) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.7; }
+      90%  { opacity: 0.4; }
+      100% { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
+    }
+
+    /* Main wrapper */
+    .wrapper {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 20px 80px;
+      gap: 50px;
+    }
+
+    /* Hero */
+    .hero {
+      text-align: center;
+      animation: fadeDown 1s ease both;
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .hero .subtitle {
+      font-size: 1rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: #f9a8d4;
+      margin-bottom: 16px;
+      font-weight: 300;
+    }
+    .hero h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(3rem, 10vw, 6rem);
+      background: linear-gradient(90deg, #f9a8d4, #fbbf24, #f9a8d4);
+      background-size: 200%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      line-height: 1.1;
+    }
+    @keyframes shimmer {
+      from { background-position: 0%; }
+      to   { background-position: 200%; }
+    }
+    .hero .name {
+      font-family: 'Dancing Script', cursive;
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      color: #fde68a;
+      margin-top: 4px;
+    }
+
+    /* Candle cake */
+    .cake-section {
+      animation: fadeUp 1s ease 0.3s both;
+      text-align: center;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .cake {
+      font-size: 5rem;
+      display: inline-block;
+      animation: bob 2s ease-in-out infinite;
+      filter: drop-shadow(0 0 20px rgba(251,191,36,0.5));
+    }
+    @keyframes bob {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(-10px); }
+    }
+
+    /* Cards row */
+    .cards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      max-width: 900px;
+      width: 100%;
+      animation: fadeUp 1s ease 0.5s both;
+    }
+    .card {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(249,168,212,0.2);
+      border-radius: 20px;
+      padding: 28px 24px;
+      width: 250px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(249,168,212,0.2);
+    }
+    .card .icon { font-size: 2.5rem; margin-bottom: 12px; }
+    .card h3 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.4rem;
+      color: #fde68a;
+      margin-bottom: 8px;
+    }
+    .card p {
+      font-size: 0.88rem;
+      color: #e9d5ff;
+      line-height: 1.6;
+      font-weight: 300;
+    }
+
+    /* Letter */
+    .letter-section {
+      max-width: 680px;
+      width: 100%;
+      animation: fadeUp 1s ease 0.7s both;
+    }
+    .letter {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(249,168,212,0.25);
+      border-radius: 24px;
+      padding: 40px 36px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .letter::before {
+      content: '❝';
+      position: absolute;
+      top: 12px; left: 20px;
+      font-size: 4rem;
+      color: rgba(249,168,212,0.15);
+      font-family: serif;
+    }
+    .letter h2 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 2rem;
+      color: #f9a8d4;
+      margin-bottom: 20px;
+    }
+    .letter p {
+      font-size: 1rem;
+      color: #e9d5ff;
+      line-height: 1.9;
+      font-weight: 300;
+      margin-bottom: 14px;
+    }
+    .letter .signature {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.6rem;
+      color: #fde68a;
+      margin-top: 24px;
+    }
+    .letter .heart-sign {
+      font-size: 1.4rem;
+      margin-top: 6px;
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%,100% { transform: scale(1); }
+      50%      { transform: scale(1.3); }
+    }
+
+    /* Wishes */
+    .wishes {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      max-width: 700px;
+      animation: fadeUp 1s ease 0.9s both;
+    }
+    .wish-tag {
+      background: rgba(249,168,212,0.12);
+      border: 1px solid rgba(249,168,212,0.3);
+      border-radius: 50px;
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      color: #fce7f3;
+      font-weight: 300;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      animation: fadeUp 1s ease 1.1s both;
+    }
+    .footer p {
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.3rem;
+      color: #c4b5fd;
+    }
+    .footer .confetti-row {
+      font-size: 1.5rem;
+      letter-spacing: 6px;
+      margin-top: 6px;
+    }
+
+    /* Burst on load */
+    .burst {
+      position: fixed;
+      top: 50%; left: 50%;
+      pointer-events: none;
+      z-index: 999;
+    }
+    .burst span {
+      position: absolute;
+      font-size: 1.8rem;
+      animation: burst var(--b-dur) ease-out forwards;
+    }
+    @keyframes burst {
+      0%   { transform: translate(-50%,-50%) translate(0,0) scale(0); opacity: 1; }
+      100% { transform: translate(-50%,-50%) translate(var(--bx), var(--by)) scale(1); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Stars -->
+  <div class="stars" id="stars"></div>
+
+  <!-- Floating hearts -->
+  <div class="hearts-bg" id="hearts"></div>
+
+  <!-- Burst -->
+  <div class="burst" id="burst"></div>
+
+  <div class="wrapper">
+
+    <!-- Hero -->
+    <div class="hero">
+      <p class="subtitle">✨ A special day for a special soul ✨</p>
+      <h1>Happy Birthday</h1>
+      <div class="name">Bacha 🎀</div>
+    </div>
+
+    <!-- Cake -->
+    <div class="cake-section">
+      <div class="cake">🎂</div>
+    </div>
+
+    <!-- Cards -->
+    <div class="cards">
+      <div class="card">
+        <div class="icon">🌸</div>
+        <h3>You Are Rare</h3>
+        <p>In a world full of ordinary moments, you make every single one feel like magic.</p>
+      </div>
+      <div class="card">
+        <div class="icon">✨</div>
+        <h3>You Are Light</h3>
+        <p>You don't even realise how much brightness you bring just by being yourself.</p>
+      </div>
+      <div class="card">
+        <div class="icon">💫</div>
+        <h3>You Are Unforgettable</h3>
+        <p>Some people leave a mark on your soul. You, Bacha, left one on mine.</p>
+      </div>
+    </div>
+
+    <!-- Letter -->
+    <div class="letter-section">
+      <div class="letter">
+        <h2>A little note, just for you 💌</h2>
+        <p>
+          Today is all about you — your laugh, your kindness, your beautiful heart that somehow makes
+          everyone around you feel at home.
+        </p>
+        <p>
+          You deserve a day as warm and wonderful as you are. A day full of cake, joy, and every little thing
+          that makes you smile.
+        </p>
+        <p>
+          And if I could give you one birthday wish — it would simply be that you always know how truly
+          special you are to the people lucky enough to have you in their lives.
+        </p>
+        <p>
+          This isn't just a happy birthday. This is a <em style="color:#f9a8d4">"I'm so glad you were born"</em> — 
+          because the world is genuinely better with you in it. 🌷
+        </p>
+        <div class="signature">— Mokshith</div>
+        <div class="heart-sign">💕</div>
+      </div>
+    </div>
+
+    <!-- Wishes -->
+    <div class="wishes">
+      <span class="wish-tag">🌷 May you always bloom</span>
+      <span class="wish-tag">🌙 May your dreams come true</span>
+      <span class="wish-tag">☀️ May life be kind to you</span>
+      <span class="wish-tag">🍰 May your cake be infinite</span>
+      <span class="wish-tag">💖 May you always feel loved</span>
+      <span class="wish-tag">🎉 May this year be your best yet</span>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Wishing you the most magical birthday, Bacha 🎀</p>
+      <div class="confetti-row">🎊 🌸 🎈 💕 🎂 💫 🎁</div>
+    </div>
+
+  </div>
+
+  <script>
+    // Stars
+    const starsEl = document.getElementById('stars');
+    for (let i = 0; i < 120; i++) {
+      const s = document.createElement('div');
+      s.className = 'star';
+      const size = Math.random() * 2.5 + 0.5;
+      s.style.cssText = `
+        width:${size}px; height:${size}px;
+        top:${Math.random()*100}%;
+        left:${Math.random()*100}%;
+        --dur:${(Math.random()*3+1.5).toFixed(1)}s;
+      `;
+      starsEl.appendChild(s);
+    }
+
+    // Floating hearts
+    const heartsEl = document.getElementById('hearts');
+    const symbols = ['💕','🌸','✨','💖','🌷','💗','⭐','🌙'];
+    function addHeart() {
+      const h = document.createElement('div');
+      h.className = 'heart-float';
+      h.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+      const dur = (Math.random()*8+7).toFixed(1);
+      h.style.cssText = `
+        left:${Math.random()*100}%;
+        --size:${(Math.random()*1.2+0.8).toFixed(1)}rem;
+        --dur2:${dur}s;
+        animation-delay:${(Math.random()*dur).toFixed(1)}s;
+      `;
+      heartsEl.appendChild(h);
+      setTimeout(() => h.remove(), parseFloat(dur)*1000 + 2000);
+    }
+    for (let i = 0; i < 15; i++) addHeart();
+    setInterval(addHeart, 900);
+
+    // Burst on load
+    const burstEl = document.getElementById('burst');
+    const burstSyms = ['🎉','🎊','💕','🌸','✨','🎈','💖','🌷'];
+    burstSyms.forEach((sym, i) => {
+      const span = document.createElement('span');
+      span.textContent = sym;
+      const angle = (i / burstSyms.length) * 360;
+      const dist = 180 + Math.random()*80;
+      const rad = angle * Math.PI / 180;
+      span.style.cssText = `
+        --bx:${(Math.cos(rad)*dist).toFixed(0)}px;
+        --by:${(Math.sin(rad)*dist).toFixed(0)}px;
+        --b-dur:${(1.2+Math.random()*0.5).toFixed(1)}s;
+        animation-delay:${(Math.random()*0.3).toFixed(2)}s;
+      `;
+      burstEl.appendChild(span);
+    });
+    setTimeout(() => burstEl.remove(), 3000);
+  </script>
+</body>
+</html>
